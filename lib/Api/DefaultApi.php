@@ -73,7 +73,6 @@ class DefaultApi
     {
         if ($apiClient == null) {
             $apiClient = new ApiClient();
-            $apiClient->getConfig()->setHost('http://localhost:8090');
         }
 
         $this->apiClient = $apiClient;
