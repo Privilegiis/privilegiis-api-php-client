@@ -56,27 +56,25 @@ Please follow the [installation procedure](#installation--usage) and then run th
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
+ini_set('display_errors', 'On');
 // Configure OAuth2 access token for authorization: client_credentials
 $configuration = Swagger\Client\Configuration::getDefaultConfiguration();
-// Set the authorization server basepath
-$configuration->setOauthBasePath(OAUTH_SERVER_BASEPATH); // for example http://locahost:8091
-// Set the API basepath
-$configuration->setHost(YOUR_API_BASEPATH); // for example: http://locahost:8090
-// Set your credentials
+//Descomentar en caso de hacer las pruebas en Windows
+//$configuration->setSSLVerification(false);
+$configuration->setOauthBasePath(OAUTH_SERVER_BASEPATH);
+$configuration->setHost(YOUR_API_BASEPATH);
 $configuration->clientCredentialsAuth(YOUR_CLIENT_ID, YOUR_CLIENT_SECRET);
-
 $api_instance = new Swagger\Client\Api\DefaultApi();
-$new_privilege_validation = new \Swagger\Client\Model\NewPrivilegeValidation(); // \Swagger\Client\Model\NewPrivilegeValidation | The id of the privilege to retrieve.
-
+$nif = "HASH_DNI_EJEMPLO_PROPORCIONADO_PRIVILEGIIS"; // string | El número de identificación fiscal del usuario
+$amount = 1.2; // double | El valor de la compra
 try {
-    $result = $api_instance->createPrivilegeRequest($new_privilege_validation);
+    $result = $api_instance->getBestPrivilege($nif, $amount);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->createPrivilegeRequest: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->getBestPrivilege: ', $e->getMessage(), PHP_EOL;
 }
-
 ?>
+
 ```
 
 ## Documentation for API Endpoints
